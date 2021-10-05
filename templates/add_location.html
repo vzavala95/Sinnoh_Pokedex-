@@ -1,0 +1,61 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Sinnoh Pokedex</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/styles.css') }}">
+    </head>
+    <body>
+        <div id="bg">
+    <div id="wrapper">
+    <div class="topnav">
+        <a href="main.html">Home</a>
+        <a href="view_pokemon.html">Pokemon</a>
+        <a href="view_types.html" >Types</a>
+        <a href="view_moves.html" >Moves</a>
+        <a href="view_locations.html" class="active">Locations</a>
+        <a href="view_gym_leaders.html" >Gym Leaders</a>
+        <a href="view_pokemon_moves.html">Manage Pokemon Moves</a>
+        <a href="view_pokemon_locations.html">Manage Pokemon Locations</a>
+      </div>
+
+      <h1>
+        Add or Update Locations
+    </h1>
+    <fieldset>
+    <form class="form" action="{{ form_action }}" method="post">
+          <label for="locationName" class="form-label">Add a Location</label>
+          {% if location_data %}
+          <input type="text" class="form-control" id="locationName" name="locationName" value="{{ l[0][1] }}" required>
+          {% else %}
+          <input type="text" class="form-control" id="locationName" name=locationName required>
+          {% endif %}
+
+          <label for="locationBio" class="form-label">Location (description):</label>
+          {% if location_data %}
+          <input type="text" class="form-control" id="locationBio" name="locationBio" value="{{ l[0][2] }}">
+          {% else %}
+          <input type="text" class="form-control" id="locationBio" name="locationBio">
+          {% endif %}
+
+          <label for="leader" class="form-label">Add a Gym Leader:</label>
+          <select name="leader" class="form-control input" id="leader">
+            {% for gl in gym_leaders %}
+            <option value= "none" value=''></option>
+            <option value="{{ gl[0] or '' }} ">{{ gl[0] or '' }}</option>
+            {% endfor %}
+        </select>
+    <br>
+    <br>
+    
+  <input type="submit" class="btn btn-primary"></button>
+  <br>
+</fieldset>
+
+</form>
+</div>
+</body>
+<br>
